@@ -25,10 +25,10 @@ public class BaseClass extends AbstractTestNGCucumberTests {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		
 	}
-	@AfterMethod
+@AfterMethod
 	public void postCondition() {
 		
 		driver.close();
 	}
-	
+
 }

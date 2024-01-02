@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.asserts.SoftAssert;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.But;
@@ -46,14 +47,18 @@ public class login extends BaseClass {
 	@Then("Verify the dashboard")
 	public void VerifyHOmepage() {
 		
-		Boolean dash=driver.findElement(By.xpath("//span[text()='Dashboard']")).isDisplayed();
+		String dash=driver.findElement(By.xpath("//span[text()='Dashboard']")).getText();
 		
-		if (dash)
+		/*if (dash)
 			System.out.println("Dashboard displayed");
 		else
 		{
 			System.out.println("Dashboard is not  displayed");
-	}
+	}*/
+		
+		SoftAssert sa= new SoftAssert();
+		sa.assertEquals(dash, "Dashboard");
+		sa.assertAll();
 }
 	
 	
@@ -69,5 +74,38 @@ Boolean dash=driver.findElement(By.xpath("//p[text()='Invalid credentials']")).i
 			System.out.println("Invalid credentials message is not displayed");
 	}
 		
+	}
+	
+	@When("Click on the Forgotpassword link")
+	public void verifyForgotPasswordLink()
+	{
+		driver.findElement(By.className("orangehrm-login-forgot")).click();
+		
+	}
+	
+	@Then("Verify the Reset Password Page is displayed")
+	public void resetPasswordPage() {
+		
+		String reset=driver.findElement(By.className("orangehrm-forgot-password-title")).getText();
+		SoftAssert sa= new SoftAssert();
+		sa.assertEquals(reset, "Reset Password");
+		sa.assertAll();
+}
+	
+	@And("Click on the ResetPassword Button")
+	public void resetPasswordButton()
+	{
+	driver.findElement(By.xpath("//button[@class='oxd-button oxd-button--large oxd-button--secondary orangehrm-forgot-password-button orangehrm-forgot-password-button--reset']")).click();	
+		
+	}
+	
+	@Then("Verify the Reset Password sent Page is displayed")
+	public void resetPasswordSucessPage() {
+		
+		String sucessMessage=driver.findElement(By.className("orangehrm-forgot-password-title")).getText();
+		System.out.println(sucessMessage);
+		SoftAssert sa= new SoftAssert();
+		sa.assertEquals(sucessMessage, "Reset Password link sent successfully");
+		sa.assertAll();
 	}
 }
