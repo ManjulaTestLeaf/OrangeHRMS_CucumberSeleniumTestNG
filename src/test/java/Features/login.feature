@@ -1,6 +1,6 @@
-Feature: Login to the OrangeHRMS website
+Feature: Login Page of the Orange HRMS 
 
-@Smoke
+
 Scenario: Positive Login of the website
 
 And Enter the username as 'Admin'
