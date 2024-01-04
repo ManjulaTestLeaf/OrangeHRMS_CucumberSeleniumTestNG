@@ -1,6 +1,6 @@
 Feature: Login to the OrangeHRMS website
 
-
+@Smoke
 Scenario: Positive Login of the website
 
 And Enter the username as 'Admin'
@@ -8,11 +8,12 @@ And Enter the password as 'admin123'
 When Click on the Login button
 Then Verify the dashboard
 
+
 Scenario Outline: Invalid login of the website message is displayed 
 And Enter the username as <UserName>
 And Enter the password as <password>
 When Click on the Login button
-But Verify the dashboard is not displayed
+But Verify the invalid credentials message  is displayed
  
  Examples:
  |UserName|password|

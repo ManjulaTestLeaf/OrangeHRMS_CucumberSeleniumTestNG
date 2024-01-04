@@ -3,7 +3,10 @@ package steps;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.asserts.SoftAssert;
 
 import io.cucumber.java.en.And;
@@ -11,37 +14,56 @@ import io.cucumber.java.en.But;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import steps.login;
 
 public class login extends BaseClass {
-	//public static ChromeDriver driver ;
+
 	
-	/*@Given("Launch the Browser")
-	public void launchBrowser() {
-		
-			driver= new ChromeDriver();
-			driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-			
-	}*/
 	
 	@And("Enter the username as {string}")
-	public void enterUsername(String uName) {
+	public  login  enterUsername(String uName) {
 		
-		driver.findElement(By.name("username")).sendKeys(uName);
-
-    }
+		WebElement eleUserName =driver.findElement(By.name("username"));
+		
+		try {
+			eleUserName.sendKeys(uName);
+			reportStep("The user is able to enter the Username", "Pass");
+		} catch (Exception e) {
+			System.out.println("Fail");
+			reportStep("Username is not entered successfully", "fail");
+		}
+		return this;
+	}
 	
 	@And("Enter the password as {string}")
-	public void enterPassword(String pass) {
+	public login enterPassword(String pass) {
 		
-		driver.findElement(By.name("password")).sendKeys(pass);
+		WebElement elePassword= driver.findElement(By.name("password"));
+		
+		try {
+			
+			elePassword.sendKeys(pass);
+			reportStep("The user is able to enter the Password", "Pass");
+	}catch (Exception e) {
+		System.out.println("Fail");
+		reportStep("Password is not entered successfully", "fail");
+	}
+		 return this;
 	}
 	
 	@When("Click on the Login button")
-	public void login() {
-		driver.findElement(By.cssSelector(".oxd-button.orangehrm-login-button")).click();
+	public login login() {
 		
+		WebElement loginButton=driver.findElement(By.cssSelector(".oxd-button.orangehrm-login-button"));
+try {
+			
+			loginButton.click();
+			reportStep("The user is able to click on the Login Button", "Pass");
+	}catch (Exception e) {
+			System.out.println("Fail");
+			reportStep("The user is not able to click on the login button", "fail");
+	}
+return this ;
 	}
 	
 	@Then("Verify the dashboard")
@@ -49,29 +71,41 @@ public class login extends BaseClass {
 		
 		String dash=driver.findElement(By.xpath("//span[text()='Dashboard']")).getText();
 		
-		/*if (dash)
-			System.out.println("Dashboard displayed");
-		else
-		{
-			System.out.println("Dashboard is not  displayed");
-	}*/
-		
-		SoftAssert sa= new SoftAssert();
-		sa.assertEquals(dash, "Dashboard");
-		sa.assertAll();
-}
+		System.out.println(dash);
+	/*	try {
+			SoftAssert sa= new SoftAssert();
+			sa.assertEquals(dash, "Dashboards");
+			sa.assertAll();
+			reportStep("The dashboard is displayed", "Pass");
+		}
+		catch (Exception e) {
+			reportStep("The dashboard is not displayed", "fail");
+		}
+			*/
+
+	if(dash.equals("Dashboard"))
+	{
+		reportStep("The dashboard is displayed", "Pass");
 	
+	}
+	else
+	{
+		reportStep("The dashboard is not  displayed", "fail");
+	}
+	}
 	
-	@But("Verify the dashboard is not displayed")
+	@But("Verify the invalid credentials message  is displayed")
 	public void verifyErrorMessage() {
 		
 Boolean dash=driver.findElement(By.xpath("//p[text()='Invalid credentials']")).isDisplayed();
 		
 		if (dash)
-			System.out.println("Invalid credentials");
+			//System.out.println("Invalid credentials");
+		reportStep("Invalid credentials message is displayed", "Pass");
 		else
 		{
-			System.out.println("Invalid credentials message is not displayed");
+			//System.out.println("Invalid credentials message is not displayed");
+			reportStep("Invalid credentials message is not displayed", "fail");
 	}
 		
 	}
@@ -79,8 +113,17 @@ Boolean dash=driver.findElement(By.xpath("//p[text()='Invalid credentials']")).i
 	@When("Click on the Forgotpassword link")
 	public void verifyForgotPasswordLink()
 	{
-		driver.findElement(By.className("orangehrm-login-forgot")).click();
+		WebElement Forgotpwlink= driver.findElement(By.className("orangehrm-login-forgot"));
 		
+		try {
+			Forgotpwlink.click();
+			reportStep("Forgot Password Link is clickable", "Pass");
+			
+		}
+		catch (Exception e) {
+			
+			reportStep("Forgot Password Link is not clickable", "fail");
+		}
 	}
 	
 	@Then("Verify the Reset Password Page is displayed")
@@ -95,17 +138,36 @@ Boolean dash=driver.findElement(By.xpath("//p[text()='Invalid credentials']")).i
 	@And("Click on the ResetPassword Button")
 	public void resetPasswordButton()
 	{
-	driver.findElement(By.xpath("//button[@class='oxd-button oxd-button--large oxd-button--secondary orangehrm-forgot-password-button orangehrm-forgot-password-button--reset']")).click();	
+	WebElement resetButton= driver.findElement(By.xpath("//button[@class='oxd-button oxd-button--large oxd-button--secondary orangehrm-forgot-password-button orangehrm-forgot-password-button--reset']"));	
 		
+	try {
+		
+		resetButton.click();
+		reportStep("The user is able to click on the Reset Button", "Pass");
+		
+	}
+	catch (Exception e) {
+		
+		reportStep("The user is not able to click on the Reset Button", "fail");
+		
+	}
 	}
 	
 	@Then("Verify the Reset Password sent Page is displayed")
 	public void resetPasswordSucessPage() {
 		
 		String sucessMessage=driver.findElement(By.className("orangehrm-forgot-password-title")).getText();
+		
+		try {
 		System.out.println(sucessMessage);
 		SoftAssert sa= new SoftAssert();
 		sa.assertEquals(sucessMessage, "Reset Password link sent successfully");
 		sa.assertAll();
+		reportStep("Reset Password link sent to the user ", "Pass");
+		}
+		catch (Exception e) {
+			
+			reportStep("Reset Password link is not working  ", "fail");
+		}
 	}
 }
