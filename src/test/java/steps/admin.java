@@ -12,19 +12,15 @@ public class admin extends BaseClass {
 	
 	@And("Click on the Admin tab")
 	public void clickAdminTab() {
-		
-		
-		WebElement adminTab=driver.findElement(By.xpath("//a[@class='oxd-main-menu-item']"));
+	WebElement adminTab=driver.findElement(By.xpath("//a[@class='oxd-main-menu-item']"));
 		try {
 					
 			adminTab.click();
-					reportStep("The user is able to click on the Login Button", "Pass");
+					reportStep("The user is able to click on the AdminTab", "Pass");
 			}catch (Exception e) {
 					System.out.println("Fail");
-					reportStep("The user is not able to click on the login button", "fail");
+					reportStep("The user is not able to click on the Admin Tab", "fail");
 			}
-		
-		
 	}
 	
 	

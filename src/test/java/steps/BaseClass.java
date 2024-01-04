@@ -59,6 +59,7 @@ public void stopReport() {
 
 @BeforeClass
 public void testDetails() {
+	
 		test = extent.createTest(testName,testDesc);
 		test.assignCategory(testCategory);
 		test.assignAuthor(testAuthor);

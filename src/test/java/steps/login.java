@@ -19,6 +19,7 @@ import steps.login;
 public class login extends BaseClass {
 
 	
+
 	
 	@And("Enter the username as {string}")
 	public  login  enterUsername(String uName) {
@@ -72,17 +73,7 @@ return this ;
 		String dash=driver.findElement(By.xpath("//span[text()='Dashboard']")).getText();
 		
 		System.out.println(dash);
-	/*	try {
-			SoftAssert sa= new SoftAssert();
-			sa.assertEquals(dash, "Dashboards");
-			sa.assertAll();
-			reportStep("The dashboard is displayed", "Pass");
-		}
-		catch (Exception e) {
-			reportStep("The dashboard is not displayed", "fail");
-		}
-			*/
-
+	
 	if(dash.equals("Dashboard"))
 	{
 		reportStep("The dashboard is displayed", "Pass");

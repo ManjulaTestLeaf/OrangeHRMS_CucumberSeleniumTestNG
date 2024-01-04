@@ -9,10 +9,11 @@
           <include name="setUpClass"/>
           <include name="testDetails"/>
           <include name="startReport"/>
-          <include name="runScenario"/>
+          <include name="runScenario" invocation-numbers="0"/>
           <include name="tearDownClass"/>
           <include name="preCondition"/>
           <include name="postCondition"/>
+          <include name="setData"/>
         </methods>
       </class> <!-- runner.Runner -->
     </classes>
