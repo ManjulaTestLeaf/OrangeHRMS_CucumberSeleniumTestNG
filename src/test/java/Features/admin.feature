@@ -1,6 +1,6 @@
 Feature: Admin page of the Orange HRMS 
 
-@Smoke
+
 Scenario: Verify the header-Admin/UserManagement
 
 And Enter the username as 'Admin'

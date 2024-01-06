@@ -19,7 +19,7 @@ But Verify the invalid credentials message  is displayed
  |UserName|password|
  |'Admin'|'admin1234'|
  
-
+@Smoke
 Scenario: Verify the forgot passwordlink
 When Click on the Forgotpassword link
 Then Verify the Reset Password Page is displayed

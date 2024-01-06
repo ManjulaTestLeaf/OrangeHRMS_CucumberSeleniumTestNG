@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Thu Jan 04 22:20:30 IST 2024</td>
+<td>Started on:</td><td>Thu Jan 04 23:13:43 IST 2024</td>
 </tr>
-<tr><td>Total time:</td><td>10 seconds (10377 ms)</td>
+<tr><td>Total time:</td><td>8 seconds (8049 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,18 +67,31 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='runner.adminRunner.runScenario()'><b>runScenario</b><br>Test class: runner.adminRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify the header-Admin/UserManagement", "Admin page of the Orange HRMS"</td>
-<td></td>
-<td>3</td>
-<td>runner.adminRunner@2cf3d63b</td></tr>
+<td title='runner.LoginRunner.runScenario()'><b>runScenario</b><br>Test class: runner.LoginRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify the forgot passwordlink", "Login Page of the Orange HRMS"</td>
+<td><div><pre>java.lang.AssertionError: The following asserts failed:
+	expected [Reset Passwords] but found [Reset Password]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
+	at steps.login.resetPasswordPage(login.java:132)
+	at ?.Verify the Reset Password Page is displayed(file:///C:/Automation/Automation_OrangeHRMS/src/test/java/Features/login.feature:25)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1141783782", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1141783782'><pre>java.lang.AssertionError: The following asserts failed:
+	expected [Reset Passwords] but found [Reset Password]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
+	at steps.login.resetPasswordPage(login.java:132)
+	at ?.Verify the Reset Password Page is displayed(file:///C:/Automation/Automation_OrangeHRMS/src/test/java/Features/login.feature:25)
+</pre></div></td>
+<td>1</td>
+<td>runner.LoginRunner@470734c3</td></tr>
 </table><p>
 </body>
 </html>

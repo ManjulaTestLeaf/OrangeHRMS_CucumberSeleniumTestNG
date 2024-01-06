@@ -120,10 +120,23 @@ Boolean dash=driver.findElement(By.xpath("//p[text()='Invalid credentials']")).i
 	@Then("Verify the Reset Password Page is displayed")
 	public void resetPasswordPage() {
 		
-		String reset=driver.findElement(By.className("orangehrm-forgot-password-title")).getText();
-		SoftAssert sa= new SoftAssert();
-		sa.assertEquals(reset, "Reset Password");
-		sa.assertAll();
+		
+			
+		
+			try{
+				String reset=driver.findElement(By.className("orangehrm-forgot-password-title")).getText();
+				SoftAssert sa= new SoftAssert();
+				sa.assertEquals(reset, "Reset Passwords");
+			    sa.assertAll();
+			    reportStep("Reset passwordpage is displayed", "Pass");
+		}
+		catch (Exception e) {
+			
+			// sa.fail("Reset passwordpage failed");
+			reportStep("Reset passwordpage is not displayed", "Fail");
+		
+			
+		}
 }
 	
 	@And("Click on the ResetPassword Button")
